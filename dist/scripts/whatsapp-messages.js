@@ -1,0 +1,1 @@
+function getPageLanguage(){return window.location.pathname.includes("/en/")?"en":"es"}jQuery(document).ready(function(){});

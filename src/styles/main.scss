@@ -1,0 +1,310 @@
+@import 'globals';
+// @import 'blog';
+
+.header-title *,
+.header-title .fusion-responsive-typography-calculated {
+  line-height: 1 !important;
+
+  @include _respRange(null, pcTab) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-size: 45px !important;
+  }
+
+  @include _respRange(pcTab, lg) {
+    font-size: 50px !important;
+  }
+
+  @include _respRange(lg, null) {
+    font-size: 50px !important;
+  }
+
+}
+
+.header-subTitle *,
+.header-subTitle .fusion-responsive-typography-calculated {
+  line-height: 1.3 !important;
+
+  @include _respRange(null, sm) {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    font-size: 16px !important;
+  }
+
+  @include _respRange(sm, pcTab) {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    font-size: 18px !important;
+  }
+
+  @include _respRange(pcTab, null) {
+    font-size: 18px !important;
+  }
+
+}
+
+.content-title *,
+.content-title .fusion-responsive-typography-calculated {
+  line-height: 1.1 !important;
+  margin-bottom: 10px !important;
+
+  @include _respRange(null, pcTab) {
+    font-size: 35px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  @include _respRange(pcTab, null) {
+    font-size: 40px !important;
+  }
+}
+
+.content-subtitle *,
+.content-subtitle .fusion-responsive-typography-calculated {
+
+  line-height: 1.3 !important;
+
+  @include _respRange(null, sm) {
+    font-size: 16px !important;
+  }
+
+  @include _respRange(sm, pcTab) {
+    font-size: 18px !important;
+  }
+
+  @include _respRange(pcTab, null) {
+    font-size: 20px !important;
+  }
+
+}
+
+.content-text *,
+.content-text .fusion-responsive-typography-calculated {
+
+  line-height: 1.3 !important;
+
+  @include _respRange(null, sm) {
+    font-size: 16px !important;
+  }
+
+  @include _respRange(sm, pcTab) {
+    font-size: 18px !important;
+  }
+
+  @include _respRange(pcTab, null) {
+    font-size: 18px !important;
+  }
+
+  p,
+  li,
+  li * {
+    line-height: 1.3 !important;
+
+    @include _respRange(null, sm) {
+      font-size: 16px !important;
+    }
+
+    @include _respRange(sm, pcTab) {
+      font-size: 18px !important;
+    }
+
+    @include _respRange(pcTab, null) {
+      font-size: 18px !important;
+    }
+  }
+
+}
+
+.third-content-title *,
+.third-content-title .fusion-responsive-typography-calculated {
+
+  @include _respRange(null, sm) {
+    font-size: 22.5px !important;
+  }
+
+  @include _respRange(sm, md) {
+    font-size: 25px !important;
+  }
+
+  @include _respRange(md, pcTab) {
+    font-size: 25px !important;
+  }
+
+  @include _respRange(pcTab, null) {
+    font-size: 25px !important;
+  }
+
+}
+
+.third-content-text *,
+.third-content-text .fusion-responsive-typography-calculated {
+  line-height: 1.3;
+
+  @include _respRange(null, pcTab) {
+    font-size: 14px !important;
+  }
+
+  @include _respRange(pcTab, null) {
+    font-size: 16px !important;
+  }
+
+}
+
+.primary-button {
+  background-color: $primaryBlue !important;
+  border: 1px solid $primaryBlue !important;
+  border-radius: 15px !important;
+  transition: all 0.25s ease-in-out !important;
+
+  span,
+  i {
+    color: $lightGray !important;
+
+  }
+
+  &:hover {
+    background-color: $lightGray !important;
+    transform: scale(1.01);
+
+    span,
+    i {
+      color: $primaryBlue !important;
+
+    }
+
+  }
+
+  @include _respRange(null, md) {
+    font-size: 14px !important;
+  }
+
+}
+
+.secondary-button {
+  border-radius: 15px !important;
+  background-color: $lightGray !important;
+  border: 1px solid $generalBlack !important;
+  transition: all 0.25s ease-in-out !important;
+
+
+  span,
+  i {
+    color: $generalBlack !important;
+
+  }
+
+  &:hover {
+    border: 1px solid $primaryPink !important;
+    transform: scale(1.01);
+
+    span,
+    i {
+      color: $primaryPink !important;
+
+    }
+
+  }
+
+  @include _respRange(null, md) {
+    font-size: 14px !important;
+  }
+
+
+}
+
+.flex {
+  display: flex;
+}
+
+.block {
+  display: block;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+:has(> .parent-mt-auto) {
+  margin-top: auto;
+}
+
+.fab {
+  font-family: "Font Awesome 5 Brands" !important;
+}
+
+.form-custom {
+
+  .fusion-form-label-wrapper,
+  .fusion-form-field {
+
+    label {
+      color: $primaryBlue !important;
+    }
+  }
+
+  input {
+    height: 40px !important;
+    font-size: 13px !important;
+  }
+
+  select {
+    height: 40px !important;
+    font-size: 13px !important;
+  }
+
+  .fusion-form-field label {
+    @include _respRange(md, null) {
+      display: none;
+      height: 25px;
+      margin-bottom: 5px;
+      display: block !important;
+    }
+
+    @include _respRange(md, pcTab) {
+      font-size: 13px !important;
+    }
+  }
+
+  .disclaimer {
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1;
+  }
+
+  .fusion-form-field.fusion-form-label-above {
+    padding: 0 5px;
+    margin-top: 15px;
+    margin-bottom: 0 !important;
+  }
+
+  .fusion-form-field.fusion-form-submit-field {
+    padding: 0;
+    border: none !important;
+    margin-top: 25px;
+    margin-bottom: 10px !important;
+
+    button[type=submit] {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      display: block;
+      width: 100%;
+    }
+
+  }
+
+}
+
+.searchform .fusion-search-form-content .fusion-search-button input[type=submit] {
+  font-family: awb-icons !important
+}
+
+

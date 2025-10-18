@@ -1,16 +1,43 @@
 <?php
 
-function theme_enqueue_styles()
-{
-  wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', []);
-  wp_enqueue_style('main.css', get_stylesheet_directory_uri() . '/dist/styles/main.css', []);
+function theme_enqueue_assets() {
+  // Versión del tema activo (si usas child theme, será la del child)
+  $theme   = wp_get_theme();
+  $version = $theme->get('Version');
 
-  // Enqueue the main JavaScript file
-  wp_enqueue_script('backgrounds.js', get_stylesheet_directory_uri() . '/dist/scripts/backgrounds.js', [], null, true);
-  wp_enqueue_script('main.js', get_stylesheet_directory_uri() . '/dist/scripts/main.js', [], null, true);
+  // CSS
+  wp_enqueue_style(
+    'child-style',
+    get_stylesheet_uri(),      // style.css del tema activo
+    [],
+    $version
+  );
 
+  wp_enqueue_style(
+    'main-css',
+    get_stylesheet_directory_uri() . '/dist/styles/main.css',
+    [],
+    $version
+  );
+
+  // JS
+  wp_enqueue_script(
+    'backgrounds-js',
+    get_stylesheet_directory_uri() . '/dist/scripts/backgrounds.js',
+    [],
+    $version,
+    true
+  );
+
+  wp_enqueue_script(
+    'main-js',
+    get_stylesheet_directory_uri() . '/dist/scripts/main.js',
+    [],
+    $version,
+    true
+  );
 }
-add_action('wp_enqueue_scripts', 'theme_enqueue_styles', 20);
+add_action('wp_enqueue_scripts', 'theme_enqueue_assets', 20);
 
 function avada_lang_setup()
 {

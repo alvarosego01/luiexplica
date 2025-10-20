@@ -1,25 +1,5 @@
 @import 'globals';
 
-.header-title *,
-.header-title .fusion-responsive-typography-calculated {
-  line-height: 1 !important;
-
-  @include _respRange(null, pcTab) {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    font-size: 37.5px !important;
-  }
-
-  @include _respRange(pcTab, lg) {
-    font-size: 42.5px !important;
-  }
-
-  @include _respRange(lg, null) {
-    font-size: 45px !important;
-  }
-
-}
-
 .degrade-grey {
   >.fusion-builder-row.fusion-row,
   >.fusion-column-wrapper {
@@ -43,6 +23,27 @@
     background: $secondaryBlue !important;
     background: radial-gradient(circle, $secondaryBlue 0%, $primaryBlue 100%) !important;
   }
+}
+
+.header-title *,
+.header-title .fusion-responsive-typography-calculated {
+  line-height: 1 !important;
+  font-family: "Recoleta", "Arial", serif !important;
+
+  @include _respRange(null, pcTab) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-size: 37.5px !important;
+  }
+
+  @include _respRange(pcTab, lg) {
+    font-size: 42.5px !important;
+  }
+
+  @include _respRange(lg, null) {
+    font-size: 45px !important;
+  }
+
 }
 
 .header-subTitle *,
@@ -71,6 +72,7 @@
 .content-title .fusion-responsive-typography-calculated {
   line-height: 1.1 !important;
   margin-bottom: 10px !important;
+  font-family: "Recoleta", "Arial", serif !important;
 
   @include _respRange(null, pcTab) {
     font-size: 35px !important;
@@ -141,6 +143,7 @@
 
 .third-content-title *,
 .third-content-title .fusion-responsive-typography-calculated {
+  font-family: "Recoleta", "Arial", serif !important;
 
   @include _respRange(null, sm) {
     font-size: 22.5px !important;

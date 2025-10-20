@@ -5,10 +5,28 @@ function theme_enqueue_assets() {
   $theme   = wp_get_theme();
   $version = $theme->get('Version');
 
+  $google_fonts_url = 'https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap';
+
+  // Enqueue Google Fonts stylesheet
+  wp_enqueue_style(
+    'google-fonts',
+    $google_fonts_url,
+    [],
+    null
+  );
+
+  // Añadir enlaces de preconnect en head (incluye crossorigin para fonts.gstatic.com)
+  add_action('wp_head', function() {
+    if (wp_style_is('google-fonts', 'queue')) {
+      echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . PHP_EOL;
+      echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . PHP_EOL;
+    }
+  }, 1);
+
   // CSS
   wp_enqueue_style(
     'child-style',
-    get_stylesheet_uri(),      // style.css del tema activo
+    get_stylesheet_uri(),
     [],
     $version
   );
@@ -18,15 +36,6 @@ function theme_enqueue_assets() {
     get_stylesheet_directory_uri() . '/dist/styles/main.css',
     [],
     $version
-  );
-
-  // JS
-  wp_enqueue_script(
-    'backgrounds-js',
-    get_stylesheet_directory_uri() . '/dist/scripts/backgrounds.js',
-    [],
-    $version,
-    true
   );
 
   wp_enqueue_script(
@@ -79,94 +88,3 @@ function enable_testimonial_translation_polylang() {
     }
 }
 
-
-$avada_options = get_option( 'fusion_options' );
-
-
-
-$customFonts = [
-  'Primary - Header title',
-  'Primary - Header Subtitle',
-  'Secondary - Content title',
-  'Secondary - Content text',
-  'Tertiary - Content title',
-  'Tertiary - Content text',
-  'Forms, Navs and others',
-];
-
-$foundFonts = [];
-foreach ($customFonts as $fontLabel) {
-  $found = null;
-  if (isset($avada_options['typography_sets']) && is_array($avada_options['typography_sets'])) {
-    foreach ($avada_options['typography_sets'] as $set) {
-      if (isset($set['label']) && $set['label'] === $fontLabel) {
-        $found = $set;
-        break;
-      }
-    }
-  }
-  $foundFonts[$fontLabel] = $found ? $found : [];
-}
-
-// Mapeo de labels a clases CSS
-$fontClassMap = [
-  'Primary - Header title'      => ['.header-title'],
-  'Primary - Header Subtitle'   => ['.header-subTitle'],
-  'Secondary - Content title'   => ['.content-title', 'li.post-card .fusion-title-heading a'],
-  'Secondary - Content text'    => ['.content-text'],
-  'Tertiary - Content title'    => ['.third-content-title'],
-  'Tertiary - Content text'     => ['.third-content-text'],
-  'Forms, Navs and others'      => ['forms-navs-others'], // Manejo especial abajo
-];
-
-// Construir CSS dinámico
-$customCss = '';
-foreach ($foundFonts as $label => $fontData) {
-  if (!empty($fontData) && isset($fontClassMap[$label]) && !empty($fontData['font-family'])) {
-    $selectors = $fontClassMap[$label];
-    $fontFamily = $fontData['font-family'];
-    $fontWeight = isset($fontData['variant']) ? $fontData['variant'] : 'normal';
-
-    // Caso especial para "Forms, Navs and others"
-    if ($selectors === ['forms-navs-others']) {
-      $customCss .= "html body div,\n";
-      $customCss .= "html body h1,\n";
-      $customCss .= "html body h2,\n";
-      $customCss .= "html body h3,\n";
-      $customCss .= "html body h4,\n";
-      $customCss .= "html body h5,\n";
-      $customCss .= "html body h6,\n";
-      $customCss .= "html body p,\n";
-      $customCss .= "html body a,\n";
-      $customCss .= "html body span,\n";
-      $customCss .= "html body button,\n";
-      $customCss .= "html body label,\n";
-      $customCss .= "html body input,\n";
-      $customCss .= "html body textarea,\n";
-      $customCss .= "html body select\n";
-      $customCss .= " { font-family: {$fontFamily};  }\n";
-      $customCss .= "html body .font-others,\n";
-      $customCss .= "html body .font-others *\n";
-      $customCss .= " { font-family: {$fontFamily} !important;  }\n";
-
-    } else {
-      // Generar CSS para cada selector
-      foreach ($selectors as $selector) {
-        // Si el selector ya empieza con punto, # o es un selector complejo, usar tal cual
-        $selectorStr = (preg_match('/^[.#]/', $selector) || strpos($selector, ' ') !== false) ? $selector : ".{$selector}";
-        $customCss .= "html body {$selectorStr},\n";
-        $customCss .= "html body {$selectorStr} * { font-family: {$fontFamily} !important; font-weight: {$fontWeight} !important; }\n";
-      }
-    }
-  }
-}
-
-if (!empty($customCss)) {
-  add_action('wp_head', function() use ($customCss) {
-    echo "<style id='custom-fonts-css'>\n{$customCss}</style>\n";
-  }, 0);
-}
-
-  // echo '<pre style="background:#fff; color:#222; padding:1em; border:1px solid #ccc;">';
-  // print_r($foundFonts);
-  // echo '</pre>';

@@ -1,5 +1,120 @@
 @use 'sass:map';
 
+// Font Face Declarations - Recoleta
+@font-face {
+  font-family: 'Recoleta';
+  src: url('../fonts/fonnts.com-recoleta-thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  src: url('../fonts/fonnts.com-recoleta-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  src: url('../fonts/fonnts.com-recoleta-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  src: url('../fonts/fonnts.com-recoleta-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  src: url('../fonts/fonnts.com-recoleta-semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  src: url('../fonts/fonnts.com-recoleta-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta';
+  src: url('../fonts/fonnts.com-recoleta-black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Font Face Declarations - Recoleta Alt
+@font-face {
+  font-family: 'Recoleta Alt';
+  src: url('../fonts/fonnts.com-recoletaalt-thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta Alt';
+  src: url('../fonts/fonnts.com-recoletaalt-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta Alt';
+  src: url('../fonts/fonnts.com-recoletaalt-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta Alt';
+  src: url('../fonts/fonnts.com-recoletaalt-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta Alt';
+  src: url('../fonts/fonnts.com-recoletaalt-semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta Alt';
+  src: url('../fonts/fonnts.com-recoletaalt-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Recoleta Alt';
+  src: url('../fonts/fonnts.com-recoletaalt-black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Breakpoints
 $xs: 365px;
 $sm: 640px;
 $md: 820px;
@@ -9,20 +124,46 @@ $xl: 1500px;
 $xl2: 1750px;
 
 @mixin _resp($breakpoint) {
-  @if $breakpoint == xs {
-    @media (min-width: ($xs)) { @content; }
-  } @else if $breakpoint == sm {
-    @media (min-width: ($sm)) { @content; }
-  } @else if $breakpoint == md {
-    @media (min-width: ($md)) { @content; }
-  } @else if $breakpoint == pcTab {
-    @media (min-width: ($pcTab)) { @content; }
-  } @else if $breakpoint == lg {
-    @media (min-width: ($lg)) { @content; }
-  } @else if $breakpoint == xl {
-    @media (min-width: ($xl)) { @content; }
-  } @else if $breakpoint == 2xl {
-    @media (min-width: ($xl2)) { @content; }
+  @if $breakpoint ==xs {
+    @media (min-width: ($xs)) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==sm {
+    @media (min-width: ($sm)) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==md {
+    @media (min-width: ($md)) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==pcTab {
+    @media (min-width: ($pcTab)) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==lg {
+    @media (min-width: ($lg)) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==xl {
+    @media (min-width: ($xl)) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==2xl {
+    @media (min-width: ($xl2)) {
+      @content;
+    }
   }
 }
 
@@ -39,7 +180,9 @@ $breakpoints: (
 @function get-breakpoint($value) {
   @if map.has-key($breakpoints, $value) {
     @return map.get($breakpoints, $value);
-  } @else {
+  }
+
+  @else {
     @return $value;
   }
 }
@@ -48,48 +191,36 @@ $breakpoints: (
   $min-width: null;
   $max-width: null;
 
-  @if $desde != null {
+  @if $desde !=null {
     $min-width: get-breakpoint($desde);
   }
 
-  @if $hasta != null {
+  @if $hasta !=null {
     $max-width: get-breakpoint($hasta);
   }
 
-  @if $min-width != null and $max-width != null {
+  @if $min-width !=null and $max-width !=null {
     @media only screen and (min-width: #{$min-width}) and (max-width: #{$max-width}) {
       @content;
     }
-  } @else if $min-width != null {
+  }
+
+  @else if $min-width !=null {
     @media only screen and (min-width: #{$min-width}) {
       @content;
     }
-  } @else if $max-width != null {
+  }
+
+  @else if $max-width !=null {
     @media only screen and (max-width: #{$max-width}) {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     @content;
   }
 }
-
-
-/*
-
-  --color-generalBlack: #242424;
-  --color-primaryPink: #e51391;
-  --color-whiteBlued: #F0F8FF;
-  --color-lightGray: #f5f5f7;
-  --color-generalWhite: #F8FAFC;
-  --color-complementBlue: #5BE7FF;
-  --color-primaryBlue: #0085F4;
-  --color-secondaryBlue: #00378E;
-  --color-thirdBlue: #003366;
-  --color-darkPurple: #1B1D5C;
-  --color-neutralGray: #9fa6b1;
-
- */
-
 
 $generalBlack: #242424;
 $primaryPink: #e51391;
@@ -102,3 +233,42 @@ $secondaryBlue: #00378E;
 $thirdBlue: #003366;
 $darkPurple: #1B1D5C;
 $neutralGray: #9fa6b1;
+
+
+
+/*
+      $customCss .= "html body div,\n";
+      $customCss .= "html body h1,\n";
+      $customCss .= "html body h2,\n";
+      $customCss .= "html body h3,\n";
+      $customCss .= "html body h4,\n";
+      $customCss .= "html body h5,\n";
+      $customCss .= "html body h6,\n";
+      $customCss .= "html body p,\n";
+      $customCss .= "html body a,\n";
+      $customCss .= "html body span,\n";
+      $customCss .= "html body button,\n";
+      $customCss .= "html body label,\n";
+      $customCss .= "html body input,\n";
+      $customCss .= "html body textarea,\n";
+      $customCss .= "html body select\n";
+ */
+
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+button,
+label,
+input,
+textarea,
+select {
+  font-family: "Nunito", sans-serif;
+
+}

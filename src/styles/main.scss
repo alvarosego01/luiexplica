@@ -29,6 +29,7 @@
 .header-title .fusion-responsive-typography-calculated {
   line-height: 1 !important;
   font-family: "Recoleta", "Arial", serif !important;
+  font-weight: 600;
 
   @include _respRange(null, pcTab) {
     padding-left: 0 !important;
@@ -73,6 +74,7 @@
   line-height: 1.1 !important;
   margin-bottom: 10px !important;
   font-family: "Recoleta", "Arial", serif !important;
+  font-weight: 600;
 
   @include _respRange(null, pcTab) {
     font-size: 35px !important;
@@ -144,6 +146,7 @@
 .third-content-title *,
 .third-content-title .fusion-responsive-typography-calculated {
   font-family: "Recoleta", "Arial", serif !important;
+  font-weight: 500;
 
   @include _respRange(null, sm) {
     font-size: 22.5px !important;
@@ -457,3 +460,44 @@
   }
 
 }
+
+.thin *,
+.thin .fusion-responsive-typography-calculated {
+  font-weight: 100 !important;
+}
+
+.extralight *,
+.extralight .fusion-responsive-typography-calculated {
+  font-weight: 200 !important;
+}
+
+.light *,
+.light .fusion-responsive-typography-calculated {
+  font-weight: 300 !important;
+}
+
+.regular *,
+.regular .fusion-responsive-typography-calculated {
+  font-weight: 400 !important;
+}
+
+.medium *,
+.medium .fusion-responsive-typography-calculated {
+  font-weight: 500 !important;
+}
+
+.semibold *,
+.semibold .fusion-responsive-typography-calculated {
+  font-weight: 600 !important;
+}
+
+.bold *,
+.bold .fusion-responsive-typography-calculated {
+  font-weight: 700 !important;
+}
+
+.extrabold *,
+.extrabold .fusion-responsive-typography-calculated {
+  font-weight: 800 !important;
+}
+
